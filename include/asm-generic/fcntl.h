@@ -15,6 +15,14 @@
  * When introducing new O_* bits, please check its uniqueness in fcntl_init().
  */
 
+#ifndef __O_TMPFILE
+#define __O_TMPFILE	020000000
+#endif
+
+/* a horrid kludge trying to make sure that this will fail on old kernels */
+#define O_TMPFILE (__O_TMPFILE | O_DIRECTORY)
+#define O_TMPFILE_MASK (__O_TMPFILE | O_DIRECTORY | O_CREAT)
+
 #define O_ACCMODE	00000003
 #define O_RDONLY	00000000
 #define O_WRONLY	00000001
